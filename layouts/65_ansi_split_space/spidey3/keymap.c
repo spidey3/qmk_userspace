@@ -1,20 +1,16 @@
-// Copyright 2022 Joshua Diamond josh@windowoffire.com (@spidey3)
+// Copyright 2025 Joshua Diamond josh@windowoffire.com (@spidey3)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "spidey3.h"
 
-#define FN_MENU LT(_FN,KC_APP)
-
-#pragma message "spidey3 65_ansi_split_space keymap"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base
     [_BASE] = LAYOUT_65_ansi_split_space(
-        QK_GESC,    KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,                 KC_BSPC,    KC_HOME, // 15
-        KC_TAB,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_LBRC,    KC_RBRC,                KC_BSLS,    KC_PGUP, // 15
-        KC_CAPS,    KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_QUOT,                            KC_ENT,     KC_PGDN, // 14
-        KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,                            KC_RSFT,    KC_UP,      KC_END,  // 14
-        KC_LCTL,    KC_LGUI,    KC_LALT,              KC_SPC,               FN_MENU,              KC_SPC,                       KC_RALT,    XXXXXXX,    KC_RCTL,    KC_LEFT,    KC_DOWN,    KC_RGHT  // 12
+        QK_GESC,    KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,                 KC_BSPC,    KC_HOME,
+        KC_TAB,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_LBRC,    KC_RBRC,                KC_BSLS,    KC_PGUP,
+        KC_CAPS,    KC_A,       KC_S,       KC_D,       KC_F,       KC_G,       KC_H,       KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_QUOT,                            KC_ENT,     KC_PGDN,
+        KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,                            KC_RSFT,    KC_UP,      KC_END,
+        KC_LCTL,    KC_LGUI,    KC_LALT,              KC_SPC,               LT(_FN,KC_SPC),       KC_SPC,                       KC_RALT,    XXXXXXX,    KC_RCTL,    KC_LEFT,    KC_DOWN,    KC_RGHT
     ),
     // Numpad
     [_NUMPAD] = LAYOUT_65_ansi_split_space(
@@ -30,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    UG_TOGG,    UG_NEXT,    UG_HUED,    UG_HUEU,    UG_SATD,    UG_SATU,    UG_VALD,    UG_VALU,    XXXXXXX,    VK_TOGG,    CH_SUSP,    KC_SLEP,                KC_PWR,     KC_BRIU,
         MO(_GLYPH), RGB_M_P,    RGB_M_B,    RGB_M_R,    RGB_M_SW,   RGB_M_SN,   RGB_M_K,    RGB_M_G,    RGB_M_TW,   UC_LINX,    XXXXXXX,    XXXXXXX,                            KC_CPNL,    KC_BRID,
         _______,    XXXXXXX,    UC_EMAC,    UC_WINC,    UC_NEXT,    NK_TOGG,    TG(_NUMPAD),UC_MAC,     XXXXXXX,    XXXXXXX,    DB_TOGG,                            _______,    KC_VOLU,    KC_MUTE,
-        _______,    _______,    _______,              KC_MPLY,              _______,              KC_MPLY,                      KC_ASST,    XXXXXXX,    _______,    KC_MPRV,    KC_VOLD,    KC_MNXT
+        _______,    _______,    _______,              KC_MPLY,              _______,              KC_MPLY,                      KC_APP,     XXXXXXX,    KC_ASST,    KC_MPRV,    KC_VOLD,    KC_MNXT
     ),
     // Glyph Transformation
     [_GLYPH] = LAYOUT_65_ansi_split_space(

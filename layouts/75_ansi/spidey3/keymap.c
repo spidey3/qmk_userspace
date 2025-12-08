@@ -2,8 +2,6 @@
 
 #define FN_MENU LT(_FN,KC_APP)
 
-#pragma message "spidey3 75_ansi keymap"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base
     [_BASE] = LAYOUT_75_ansi(
