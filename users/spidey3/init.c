@@ -26,12 +26,13 @@ uint8_t host_os_to_uc_mode(os_variant_t os) {
     }
 }
 
-uint32_t detect_os(uint32_t trigger_time, void *cb_arg) {
+bool process_detected_host_os_user(os_variant_t detected_os) {
     os_variant_t os      = detected_host_os();
     uint8_t      uc_mode = host_os_to_uc_mode(os);
     if (uc_mode != 0xFF && uc_mode != get_unicode_input_mode()) set_unicode_input_mode(uc_mode);
-    return 0;
+    return true;
 }
+
 #endif
 
 void keyboard_post_init_user(void) {
@@ -44,10 +45,6 @@ void keyboard_post_init_user(void) {
         }
         defer_exec(3000, _rv, NULL);
     }
-#endif
-
-#if defined(OS_DETECTION_ENABLE)
-    defer_exec(2800, detect_os, NULL);
 #endif
 
 #ifdef RGBLIGHT_ENABLE
@@ -66,11 +63,5 @@ void eeconfig_init_user(void) {
 bool shutdown_user(bool jump_to_bootloader) {
     shutdown_user_rgb();
     return true;
-}
-#endif
-
-#if defined(OS_DETECTION_ENABLE)
-void suspend_wakeup_init_user(void) {
-    defer_exec(2800, detect_os, NULL);
 }
 #endif
