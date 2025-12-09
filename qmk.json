@@ -1,30 +1,9 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        [
-            "kbdfans/kbd75/rev2",
-            "spidey3",
-            {
-                "FORCE_LAYOUT": "75_ansi"
-            }
-        ],
-        [
-            "kbdfans/kbd67/rev2",
-            "spidey3",
-            {
-                "FORCE_LAYOUT": "65_ansi_split_space"
-            }
-        ],
-        [
-            "mokey/ginkgo65hot",
-            "spidey3",
-            {
-                "FORCE_LAYOUT": "65_ansi_blocker"
-            }
-        ]
-        [
-            "dmqdesign/spin",
-            "spidey3_spin"
-        ]
+        [ "kbdfans/kbd75/rev2", "spidey3", ],
+        [ "kbdfans/kbd67/rev2", "spidey3", ],
+        [ "mokey/ginkgo65hot", "spidey3", ]
+        [ "dmqdesign/spin", "spidey3_spin" ]
     ]
 }

@@ -3,6 +3,8 @@
 
 #include "spidey3.h"
 
+#pragma message "jmd 65 ansi_split_space"
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base
     [_BASE] = LAYOUT_65_ansi_split_space(
