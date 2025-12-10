@@ -35,19 +35,6 @@ void matrix_scan_user(void) {
 #    endif
 #endif
 
-bool process_gflock(uint16_t keycode, keyrecord_t *record) {
-    if (!spi_gflock) {
-        return true;
-    }
-
-    if (record->event.pressed) {
-        register_code16(G(keycode));
-    } else {
-        unregister_code16(G(keycode));
-    }
-    return false;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!rand_seeded) {
         srand(record->event.time % keycode);
@@ -63,14 +50,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-
-            case CH_SUSP: 
-                tap_code16(LGUI(LSFT(KC_L)));
-                return true;
-
-            case SPI_GFLOCK:
-                spi_gflock = !spi_gflock;
-                break;
 
             case SPI_KP_00:
                 tap_code(KC_KP_0);
@@ -152,9 +131,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
 
-        case KC_F1 ... KC_F12:
-            return process_gflock(keycode, record);
-
 #ifdef SHIFT_BACKSPACE_DELETE
         case KC_BSPC: {
             static bool delkey_registered;
@@ -179,6 +155,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
 #endif
+
     }
 
 #ifdef RGBLIGHT_ENABLE

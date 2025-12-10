@@ -17,10 +17,7 @@ enum userspace_layers {
 };
 
 enum custom_keycodes {
-    CH_SUSP = SAFE_RANGE,  // Suspend
-
-    SPI_GFLOCK,
-    SPI_KP_00,
+    SPI_KP_00 = SAFE_RANGE // Suspend
 };
 
 #if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)

@@ -406,7 +406,7 @@ void post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
                 rgb_layer_ack(ACK_NO);
             break;
 
-        case SPI_GFLOCK:
+        case CHROMEOS_GUI_FKEY_LOCK:
             rgb_layer_ack_yn(spi_gflock);
             rgblight_set_layer_state(MISC_OFFSET + 0, spi_gflock);
             break;

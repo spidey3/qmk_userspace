@@ -1,6 +1,7 @@
 {
     "modules": [
         "spidey3/better_debug",
-        "spidey3/glyph_replacement"
+        "spidey3/glyph_replacement",
+        "spidey3/chromeos"
     ]
 }
