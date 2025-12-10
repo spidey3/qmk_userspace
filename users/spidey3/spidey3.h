@@ -19,16 +19,6 @@ enum userspace_layers {
 enum custom_keycodes {
     CH_SUSP = SAFE_RANGE,  // Suspend
 
-    SPI_NORMAL,
-    SPI_WIDE,
-    SPI_SCRIPT,
-    SPI_BLOCKS,
-    SPI_CIRCLE,
-    SPI_SQUARE,
-    SPI_PARENS,
-    SPI_FRAKTR,
-    SPI_BOLD,
-    SPI_MATH,
     SPI_GFLOCK,
     SPI_KP_00,
 };

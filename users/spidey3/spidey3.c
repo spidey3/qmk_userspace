@@ -9,7 +9,6 @@
 
 static bool rand_seeded = false;
 
-uint16_t spi_replace_mode = SPI_NORMAL;
 bool     spi_gflock       = false;
 
 #if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
@@ -35,83 +34,6 @@ void matrix_scan_user(void) {
 }
 #    endif
 #endif
-
-static uint32_t math_glyph_exceptions(const uint16_t keycode, const bool shifted) {
-    bool caps = host_keyboard_led_state().caps_lock;
-    if (shifted != caps) {
-        switch (keycode) {
-            // clang-format off
-            case KC_C: return 0x2102;
-            case KC_H: return 0x210D;
-            case KC_N: return 0x2115;
-            case KC_P: return 0x2119;
-            case KC_Q: return 0x211A;
-            case KC_R: return 0x211D;
-            case KC_Z: return 0x2124;
-                // clang-format on
-        }
-    }
-    return 0;
-}
-
-bool process_record_glyph_replacement(uint16_t keycode, keyrecord_t *record, uint32_t baseAlphaLower, uint32_t baseAlphaUpper, uint32_t zeroGlyph, uint32_t baseNumberOne, uint32_t spaceGlyph, uint32_t (*exceptions)(const uint16_t keycode, const bool shifted), uint8_t temp_mod, uint8_t temp_osm) {
-    void _register(uint32_t codepoint) {
-        unicode_input_start();
-        register_hex32(codepoint);
-        unicode_input_finish();
-    }
-
-    if ((((temp_mod | temp_osm) & (MOD_MASK_CTRL | MOD_MASK_ALT | MOD_MASK_GUI))) == 0) {
-        bool shifted = ((temp_mod | temp_osm) & MOD_MASK_SHIFT);
-        if (exceptions) {
-            uint32_t res = exceptions(keycode, shifted);
-            if (res) {
-                if (record->event.pressed) {
-                    _register(res);
-                }
-                return false;
-            }
-        }
-        switch (keycode) {
-            case KC_A ... KC_Z:
-                if (record->event.pressed) {
-                    clear_mods();
-#ifndef NO_ACTION_ONESHOT
-                    clear_oneshot_mods();
-#endif
-
-                    bool     caps = host_keyboard_led_state().caps_lock;
-                    uint32_t base = ((shifted == caps) ? baseAlphaLower : baseAlphaUpper);
-                    _register(base + (keycode - KC_A));
-                    set_mods(temp_mod);
-                }
-                return false;
-            case KC_0:
-                if (shifted) { // skip shifted numbers, so that we can still use symbols etc.
-                    return true;
-                }
-                if (record->event.pressed) {
-                    _register(zeroGlyph);
-                }
-                return false;
-            case KC_1 ... KC_9:
-                if (shifted) { // skip shifted numbers, so that we can still use symbols etc.
-                    return true;
-                }
-                if (record->event.pressed) {
-                    _register(baseNumberOne + (keycode - KC_1));
-                }
-                return false;
-            case KC_SPACE:
-                if (record->event.pressed) {
-                    _register(spaceGlyph); // em space
-                }
-                return false;
-        }
-    }
-
-    return true;
-}
 
 bool process_gflock(uint16_t keycode, keyrecord_t *record) {
     if (!spi_gflock) {
@@ -141,15 +63,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-                // clang-format off
 
-            case CH_SUSP: tap_code16(LGUI(LSFT(KC_L))); return true;
-
-                // clang-format on
-
-            case SPI_NORMAL ... SPI_MATH:
-                spi_replace_mode = (spi_replace_mode == keycode) ? SPI_NORMAL : keycode;
-                break;
+            case CH_SUSP: 
+                tap_code16(LGUI(LSFT(KC_L)));
+                return true;
 
             case SPI_GFLOCK:
                 spi_gflock = !spi_gflock;
@@ -234,29 +151,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case KC_A ... KC_0:
-        case KC_SPACE:
-            switch (spi_replace_mode) {
-                case SPI_WIDE:
-                    return process_record_glyph_replacement(keycode, record, 0xFF41, 0xFF21, 0xFF10, 0xFF11, 0x2003, NULL, mods, osm);
-                case SPI_SCRIPT:
-                    return process_record_glyph_replacement(keycode, record, 0x1D4EA, 0x1D4D0, 0x1D7CE, 0x1D7CF, 0x2002, NULL, mods, osm);
-                case SPI_BLOCKS:
-                    return process_record_glyph_replacement(keycode, record, 0x1F170, 0x1F170, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_CIRCLE:
-                    return process_record_glyph_replacement(keycode, record, 0x1F150, 0x1F150, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_SQUARE:
-                    return process_record_glyph_replacement(keycode, record, 0x1F130, 0x1F130, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_PARENS:
-                    return process_record_glyph_replacement(keycode, record, 0x1F110, 0x1F110, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_FRAKTR:
-                    return process_record_glyph_replacement(keycode, record, 0x1D586, 0x1D56C, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_BOLD:
-                    return process_record_glyph_replacement(keycode, record, 0x1D41A, 0x1D400, '0', '1', 0x2002, NULL, mods, osm);
-                case SPI_MATH:
-                    return process_record_glyph_replacement(keycode, record, 0x1D552, 0x1D538, '0', '1', 0x2002, &math_glyph_exceptions, mods, osm);
-            }
-            break;
 
         case KC_F1 ... KC_F12:
             return process_gflock(keycode, record);

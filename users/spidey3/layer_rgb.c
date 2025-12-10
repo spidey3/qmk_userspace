@@ -108,7 +108,7 @@ void do_rgb_all(void) {
     do_rgb_layers(layer_state, LAYER_BASE_REGULAR, LAYER_BASE_END);
     do_rgb_unicode(get_unicode_input_mode());
     rgblight_set_layer_state(MISC_OFFSET + 0, spi_gflock);
-    rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != SPI_NORMAL);
+    rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
 }
 
 // flags. 0 = no change, 1 = increment, -1 = decrement.
@@ -411,9 +411,9 @@ void post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
             rgblight_set_layer_state(MISC_OFFSET + 0, spi_gflock);
             break;
 
-        case SPI_NORMAL ... SPI_FRAKTR:
-            rgb_layer_ack_yn(spi_replace_mode != SPI_NORMAL);
-            rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != SPI_NORMAL);
+        case GLYPH_REPLACE_MODE_NORMAL ... GLYPH_REPLACE_MODE_MATH:
+            rgb_layer_ack_yn(spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
+            rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
             break;
 
         case UG_TOGG:
