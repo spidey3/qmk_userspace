@@ -13,10 +13,6 @@ uint16_t spi_replace_mode = SPI_NORMAL;
 bool     spi_gflock       = false;
 
 #if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
-void __attribute__((noinline)) report_version(void) {
-    uprintln(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION " - " QMK_BUILDDATE);
-}
-
 #    if defined(SPI_DEBUG_SCAN_RATE)
 static uint32_t matrix_scan_count = 0;
 static uint32_t matrix_timer      = 0;
@@ -33,6 +29,8 @@ void matrix_scan_user(void) {
             uprintf("scan rate: %lu/s\n", matrix_scan_count / SPI_SCAN_RATE_INTERVAL);
             matrix_scan_count = 0;
         }
+    } else {
+        matrix_timer = 0;
     }
 }
 #    endif
@@ -129,17 +127,6 @@ bool process_gflock(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    dprintf("key event: kc: %02X, col: %02u, row: %02u, pressed: %u mods: %08b "
-#if !defined(NO_ACTION_ONESHOT)
-            "os: %08b "
-#endif
-            "weak: %08b\n",
-            keycode, record->event.key.col, record->event.key.row, record->event.pressed, bitrev(get_mods()),
-#if !defined(NO_ACTION_ONESHOT)
-            bitrev(get_oneshot_mods()),
-#endif
-            bitrev(get_weak_mods()));
-
     if (!rand_seeded) {
         srand(record->event.time % keycode);
         rand_seeded = true;
@@ -154,33 +141,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     if (record->event.pressed) {
         switch (keycode) {
-#ifndef NO_DEBUG
-            // Re-implement this here, but smarter, and fix the persistence!
-            case QK_DEBUG_TOGGLE:
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    debug_enable   = 0;
-                    debug_keyboard = 0;
-                    debug_matrix   = 0;
-                } else if (!debug_enable) {
-                    debug_enable = 1;
-                    report_version();
-#    if defined(SPI_DEBUG_SCAN_RATE)
-                    matrix_timer = 0;
-#    endif
-                } else if (!debug_keyboard) {
-                    debug_keyboard = 1;
-                } else if (!debug_matrix) {
-                    debug_matrix = 1;
-                } else {
-                    debug_enable   = 0;
-                    debug_keyboard = 0;
-                    debug_matrix   = 0;
-                }
-                uprintf("DEBUG: enable=%u, kb=%u, matrix=%u\n", debug_enable, debug_keyboard, debug_matrix);
-                eeconfig_update_debug(&debug_config);
-                return false;
-#endif
-
                 // clang-format off
 
             case CH_SUSP: tap_code16(LGUI(LSFT(KC_L))); return true;
