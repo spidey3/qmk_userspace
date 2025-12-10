@@ -1,4 +1,4 @@
-// Copyright 2025 Josh Diamond 
+// Copyright 2025 Joshua Diamond josh@windowoffire.com (@spidey3)                                                                                                                  
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H

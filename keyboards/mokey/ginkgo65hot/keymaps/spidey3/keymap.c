@@ -19,12 +19,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_NUM,     XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_KP_7,    KC_KP_8,    KC_KP_9,    KC_KP_0,    KC_PMNS,    KC_PEQL,                _______,    _______,
         _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_KP_4,    KC_KP_5,    KC_KP_6,    KC_PCMM,    _______,    _______,                _______,    _______,
         KC_NUM,     XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_KP_1,    KC_KP_2,    KC_KP_3,    KC_PPLS,    KC_PAST,                            KC_PENT,    _______,
-        _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_KP_0,    SPI_KP_00,  KC_PDOT,    KC_PSLS,                            _______,    _______,    _______,
+        _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    KC_KP_0,    MK_00,      KC_PDOT,    KC_PSLS,                            _______,    _______,    _______,
         _______,    _______,    _______,                                    _______,                                            _______,    _______,                _______,    _______,    _______
     ),
     // FN
     [_FN] = LAYOUT_65_ansi_blocker(
-        KC_GRV,     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,                 KC_INS,     KC_SCRL,
+        KC_GRV,     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,                 KC_INS,     KC_PSCR,
         XXXXXXX,    UG_TOGG,    UG_NEXT,    UG_HUED,    UG_HUEU,    UG_SATD,    UG_SATU,    UG_VALD,    UG_VALU,    XXXXXXX,    VK_TOGG,    CH_SUSP,    KC_SLEP,                KC_PWR,     KC_BRIU,
         MO(_GLYPH), RGB_M_P,    RGB_M_B,    RGB_M_R,    RGB_M_SW,   RGB_M_SN,   RGB_M_K,    RGB_M_G,    RGB_M_TW,   UC_LINX,    XXXXXXX,    XXXXXXX,                            KC_CPNL,    KC_BRID,
         _______,    XXXXXXX,    UC_EMAC,    UC_WINC,    UC_NEXT,    NK_TOGG,    TG(_NUMPAD),UC_MAC,     XXXXXXX,    XXXXXXX,    DB_TOGG,                            _______,    KC_VOLU,    KC_MUTE,
@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // Glyph Transformation
     [_GLYPH] = LAYOUT_65_ansi_blocker(
-        QK_BOOT,    UM(SAD),    UM(MEH),    UM(HAPPY),  UM(ANGRY),  UM(THUMBD), UM(THUMBU), UM(SPIDER), X_BUL,      UM(LOL),    UM(SURPR),  X_DASH,     CH_GFLK,                XXXXXXX,    XXXXXXX,
+        QK_BOOT,    UM(SAD),    UM(MEH),    UM(HAPPY),  UM(ANGRY),  UM(THUMBD), UM(THUMBU), UM(SPIDER), X_BUL,      UM(LOL),    UM(SURPR),  X_DASH,     CH_GFLK,                XXXXXXX,    KC_SCRL,
         EE_CLR,     GR_NORM,    GR_WIDE,    GR_SCRI,    GR_BLOC,    GR_CIRC,    GR_SQUA,    GR_PARE,    GR_FRAK,    GR_BOLD,    GR_MATH,    XXXXXXX,    XXXXXXX,                XXXXXXX,    XXXXXXX,
         _______,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,                            XXXXXXX,    XXXXXXX,
         XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    UM(LARR),   UM(RARR),   XXXXXXX,                            XXXXXXX,    XXXXXXX,    XXXXXXX,
