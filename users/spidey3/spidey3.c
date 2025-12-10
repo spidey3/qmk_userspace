@@ -9,8 +9,6 @@
 
 static bool rand_seeded = false;
 
-bool     spi_gflock       = false;
-
 #if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
 #    if defined(SPI_DEBUG_SCAN_RATE)
 static uint32_t matrix_scan_count = 0;
