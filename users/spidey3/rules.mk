@@ -2,7 +2,6 @@ BOOTMAGIC_ENABLE = yes    # Enable Bootmagic Lite
 CONSOLE_ENABLE = yes      # Console for debug
 OS_DETECTION_ENABLE = yes # Experimental OS detection
 BACKLIGHT_ENABLE = no     # Enable keyboard backlight functionality
-UNICODE_COMMON = yes      # Enable unicode
 UNICODEMAP_ENABLE = yes   # Enable unicode
 
 NKRO_ENABLE = yes

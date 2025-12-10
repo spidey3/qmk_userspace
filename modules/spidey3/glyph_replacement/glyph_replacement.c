@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 
-uint16_t spi_replace_mode = GLYPH_REPLACE_MODE_NORMAL;
+uint16_t glyph_replace_mode = GLYPH_REPLACE_MODE_NORMAL;
 
 static uint32_t math_glyph_exceptions(const uint16_t keycode, const bool shifted) {
     bool caps = host_keyboard_led_state().caps_lock;
@@ -94,7 +94,7 @@ bool process_record_glyph_replacement(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case GLYPH_REPLACE_MODE_NORMAL ... GLYPH_REPLACE_MODE_MATH:
-                spi_replace_mode = (spi_replace_mode == keycode) ? GLYPH_REPLACE_MODE_NORMAL : keycode;
+                glyph_replace_mode = (glyph_replace_mode == keycode) ? GLYPH_REPLACE_MODE_NORMAL : keycode;
                 break;
         }
     }
@@ -102,7 +102,7 @@ bool process_record_glyph_replacement(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_A ... KC_0:
         case KC_SPACE:
-            switch (spi_replace_mode) {
+            switch (glyph_replace_mode) {
                 case GLYPH_REPLACE_MODE_WIDE:
                     return replace_glyph(keycode, record, 0xFF41, 0xFF21, 0xFF10, 0xFF11, 0x2003, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_SCRIPT:

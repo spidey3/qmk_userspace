@@ -6,8 +6,8 @@
 #include "spidey3.h"
 #include <lib/lib8tion/lib8tion.h>
 
-extern bool     spi_gflock;
-extern uint16_t spi_replace_mode;
+extern bool     chromeos_gflock;
+extern uint16_t glyph_replace_mode;
 
 // clang-format off
 
@@ -107,8 +107,8 @@ void do_rgb_all(void) {
     do_rgb_layers(default_layer_state, LAYER_BASE_DEFAULT, LAYER_BASE_REGULAR);
     do_rgb_layers(layer_state, LAYER_BASE_REGULAR, LAYER_BASE_END);
     do_rgb_unicode(get_unicode_input_mode());
-    rgblight_set_layer_state(MISC_OFFSET + 0, spi_gflock);
-    rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
+    rgblight_set_layer_state(MISC_OFFSET + 0, chromeos_gflock);
+    rgblight_set_layer_state(MISC_OFFSET + 1, glyph_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
 }
 
 // flags. 0 = no change, 1 = increment, -1 = decrement.
@@ -407,13 +407,13 @@ void post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
             break;
 
         case CHROMEOS_GUI_FKEY_LOCK:
-            rgb_layer_ack_yn(spi_gflock);
-            rgblight_set_layer_state(MISC_OFFSET + 0, spi_gflock);
+            rgb_layer_ack_yn(chromeos_gflock);
+            rgblight_set_layer_state(MISC_OFFSET + 0, chromeos_gflock);
             break;
 
         case GLYPH_REPLACE_MODE_NORMAL ... GLYPH_REPLACE_MODE_MATH:
-            rgb_layer_ack_yn(spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
-            rgblight_set_layer_state(MISC_OFFSET + 1, spi_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
+            rgb_layer_ack_yn(glyph_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
+            rgblight_set_layer_state(MISC_OFFSET + 1, glyph_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
             break;
 
         case UG_TOGG:
