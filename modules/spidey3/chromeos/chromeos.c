@@ -19,6 +19,10 @@ bool process_gflock(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_chromeos(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_chromeos_kb(keycode, record)) {
+        return false;
+    }
+
     if (record->event.pressed) {
         switch (keycode) {
             case CHROMEOS_SUSPEND:

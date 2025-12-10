@@ -6,14 +6,15 @@
 #include "os_detection.h"
 
 bool process_record_misc_keys(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_misc_keys_kb(keycode, record)) {
+        return false;
+    }
 
     switch (keycode) {
 
         case KC_PRINT_SCREEN: {
             if (record->event.pressed) {
                 os_variant_t os = detected_host_os();
-                dprintf("DEBUG: KC_PRINT_SCREEN os: %02u", os);
-
                 uint8_t mods = get_mods();
 #ifndef NO_ACTION_ONESHOT
                 uint8_t osm = get_oneshot_mods();

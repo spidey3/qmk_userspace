@@ -8,7 +8,7 @@
 
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
-void __attribute__((noinline)) report_version(void) {
+static void __attribute__((noinline)) report_version(void) {
     uprintln(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION " - " QMK_BUILDDATE);
 }
 

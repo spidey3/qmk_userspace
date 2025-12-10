@@ -23,7 +23,7 @@ static uint32_t math_glyph_exceptions(const uint16_t keycode, const bool shifted
     return 0;
 }
 
-bool replace_glyph(uint16_t keycode, keyrecord_t *record, uint32_t baseAlphaLower, uint32_t baseAlphaUpper, uint32_t zeroGlyph, uint32_t baseNumberOne, uint32_t spaceGlyph, uint32_t (*exceptions)(const uint16_t keycode, const bool shifted), uint8_t temp_mod, uint8_t temp_osm) {
+static bool replace_glyph(uint16_t keycode, keyrecord_t *record, uint32_t baseAlphaLower, uint32_t baseAlphaUpper, uint32_t zeroGlyph, uint32_t baseNumberOne, uint32_t spaceGlyph, uint32_t (*exceptions)(const uint16_t keycode, const bool shifted), uint8_t temp_mod, uint8_t temp_osm) {
     void _register(uint32_t codepoint) {
         unicode_input_start();
         register_hex32(codepoint);
@@ -83,6 +83,9 @@ bool replace_glyph(uint16_t keycode, keyrecord_t *record, uint32_t baseAlphaLowe
 }
 
 bool process_record_glyph_replacement(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_glyph_replacement_kb(keycode, record)) {
+        return false;
+    }
 
     uint8_t mods = get_mods();
 #ifndef NO_ACTION_ONESHOT
