@@ -2,7 +2,9 @@
     "module_name": "Glyph Replacement",
     "maintainer": "josh@windowoffire.com",
     "license": "GPL-2.0-or-later",
-    "features": {},
+    "features": {
+       "unicode_common": true
+    },
     "keycodes": [
         { "key": "GLYPH_REPLACE_MODE_NORMAL", "aliases": ["GR_NORM"] },
         { "key": "GLYPH_REPLACE_MODE_WIDE",   "aliases": ["GR_WIDE"] },
