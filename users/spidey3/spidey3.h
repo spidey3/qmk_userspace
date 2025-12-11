@@ -16,14 +16,6 @@ enum userspace_layers {
     _GLYPH,
 };
 
-enum custom_keycodes {
-    SPI_KP_00 = SAFE_RANGE // Suspend
-};
-
-#if defined(CONSOLE_ENABLE) && !defined(NO_DEBUG)
-void report_version(void);
-#endif
-
 #ifdef RGBLIGHT_ENABLE
 
 enum layer_base {

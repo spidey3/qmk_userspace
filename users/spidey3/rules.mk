@@ -7,7 +7,7 @@ UNICODEMAP_ENABLE = yes   # Enable unicode
 NKRO_ENABLE = yes
 LTO_ENABLE = yes
 
-ifeq ($(strip $(CONSOLE_ENABLE)), yes)
+ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
   DEFERRED_EXEC_ENABLE = yes
 endif
 
