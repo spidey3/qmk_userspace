@@ -11,6 +11,12 @@ bool process_record_os_detect_debug(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case OS_DETECT_STORE_SETUPS:
+            if (record->event.pressed) {
+                dprintf("os detect: store setups\n");
+                store_setups_in_eeprom();
+            }
+            return false;
         case OS_DETECT_PRINT_SETUPS:
             if (record->event.pressed) {
                 dprintf("os detect: print setups\n");

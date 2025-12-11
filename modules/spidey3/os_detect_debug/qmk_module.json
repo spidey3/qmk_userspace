@@ -8,6 +8,7 @@
         "os_detection_debug": true
     },
     "keycodes": [
+        { "key": "OS_DETECT_STORE_SETUPS", "aliases": ["OSD_SS"] },
         { "key": "OS_DETECT_PRINT_SETUPS", "aliases": ["OSD_PS"] }
     ]
 }
