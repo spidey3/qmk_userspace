@@ -1,0 +1,13 @@
+{
+    "module_name": "OS Detect Debugging",
+    "maintainer": "josh@windowoffire.com",
+    "license": "GPL-2.0-or-later",
+    "features": {
+        "console": true,
+        "os_detection": true,
+        "os_detection_debug": true
+    },
+    "keycodes": [
+        { "key": "OS_DETECT_PRINT_SETUPS", "aliases": ["OSD_PS"] }
+    ]
+}
