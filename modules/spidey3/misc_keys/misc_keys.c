@@ -11,11 +11,10 @@ bool process_record_misc_keys(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-
         case KC_PRINT_SCREEN: {
             if (record->event.pressed) {
-                os_variant_t os = detected_host_os();
-                uint8_t mods = get_mods();
+                os_variant_t os   = detected_host_os();
+                uint8_t      mods = get_mods();
 #ifndef NO_ACTION_ONESHOT
                 uint8_t osm = get_oneshot_mods();
 #else
@@ -80,21 +79,20 @@ bool process_record_misc_keys(uint16_t keycode, keyrecord_t *record) {
                 }
                 break;
             }
-        }
-        break;
+        } break;
 
-    case MISC_KEYS_00:
-        if (record->event.pressed) {
-            tap_code(KC_KP_0);
+        case MISC_KEYS_00:
+            if (record->event.pressed) {
+                tap_code(KC_KP_0);
 #if TAP_CODE_DELAY > 0
-            wait_ms(TAP_CODE_DELAY);
+                wait_ms(TAP_CODE_DELAY);
 #endif
-            register_code(KC_KP_0);
-            return false;
-        } else {
-            unregister_code(KC_KP_0);
-            return false;
-        }
+                register_code(KC_KP_0);
+                return false;
+            } else {
+                unregister_code(KC_KP_0);
+                return false;
+            }
     }
 
     return true;

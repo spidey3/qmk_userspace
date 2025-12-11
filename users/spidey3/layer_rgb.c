@@ -422,11 +422,11 @@ void post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
             rgb_layer_ack_yn(!rgblight_config.enable);
             break;
 
-#ifdef VELOCIKEY_ENABLE                                                                                                                                                                      
-        case QK_VELOCIKEY_TOGGLE:                                                                                                                                                            
-            rgb_layer_ack_yn(rgblight_velocikey_enabled());                                                                                                                                           
-            break;                                                                                                                                                                           
-#endif                                                                                                                                                                                       
+#ifdef VELOCIKEY_ENABLE
+        case QK_VELOCIKEY_TOGGLE:
+            rgb_layer_ack_yn(rgblight_velocikey_enabled());
+            break;
+#endif
 
 #ifdef NKRO_ENABLE
         case NK_TOGG:

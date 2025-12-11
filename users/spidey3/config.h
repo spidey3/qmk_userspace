@@ -42,5 +42,5 @@
 // Some keyboards enable BACKLIGHT_CAPS_LOCK without checking if backlight is enabled.
 // Undef as appropriate to avoid compiler warnings in that case.
 #ifndef BACKLIGHT_ENABLE
-#undef BACKLIGHT_CAPS_LOCK
+#    undef BACKLIGHT_CAPS_LOCK
 #endif
