@@ -1,0 +1,7 @@
+{
+    "modules": [
+        "spidey3/better_debug",
+        "spidey3/chromeos",
+        "spidey3/misc_keys"
+    ]
+}

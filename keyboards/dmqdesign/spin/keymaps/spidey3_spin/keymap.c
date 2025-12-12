@@ -15,9 +15,6 @@
  */
 #include QMK_KEYBOARD_H
 
-#include "version.h"
-#include <stdlib.h>
-
 #define RGB_LAYER_ACK_DURATION 500
 
 enum layers { _MACRO, _NUMPAD, _CURSOR, _UG, _FN };
@@ -27,15 +24,10 @@ enum layer_base {
     LAYER_BASE_END = _FN + 1,
 };
 
-enum custom_keycodes {
-    HELLO = SAFE_RANGE,
-    CH_SUSP,  // Suspend
-};
-
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MACRO] = LAYOUT(
-        A(S(KC_N)),    HELLO,         CH_SUSP,       TO(_MACRO),
+        A(S(KC_N)),    KC_PSCR,       CH_SUSP,       TO(_MACRO),
         KC_MPRV,       KC_MPLY,       KC_MNXT,       TO(_NUMPAD),
         C(A(KC_COMM)), KC_F5,         C(A(KC_DOT)),  TO(_UG),
         MO(_FN),       KC_ASST,       KC_CPNL),
@@ -164,49 +156,6 @@ void spidey_glow(void) {
 void eeconfig_init_user(void) {
     spidey_glow();
 }
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    dprintf("key event: kc: %02X, col: %02u, row: %02u, pressed: %u mods: %08b "
-#if !defined(NO_ACTION_ONESHOT)
-            "os: %08b "
-#endif
-            "weak: %08b\n",
-            keycode, record->event.key.col, record->event.key.row, record->event.pressed, bitrev(get_mods()),
-#if !defined(NO_ACTION_ONESHOT)
-            bitrev(get_oneshot_mods()),
-#endif
-            bitrev(get_weak_mods()));
-
-    if (record->event.pressed) {
-        switch (keycode) {
-            // Re-implement this here, but fix the persistence!
-            case QK_DEBUG_TOGGLE:
-                if (!debug_enable) {
-                    debug_enable = 1;
-                } else if (!debug_keyboard) {
-                    debug_keyboard = 1;
-                } else if (!debug_matrix) {
-                    debug_matrix = 1;
-                } else {
-                    debug_enable   = 0;
-                    debug_keyboard = 0;
-                    debug_matrix   = 0;
-                }
-                uprintf("DEBUG: enable=%u, keyboard=%u, matrix=%u\n", debug_enable, debug_keyboard, debug_matrix);
-                uprintln(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION ", Built on: " QMK_BUILDDATE);
-                eeconfig_update_debug(&debug_config);
-                return false;
-
-                // clang-format off
-            case CH_SUSP: tap_code16(LGUI(LSFT(KC_L))); return true;
-            case HELLO:   SEND_STRING("Hello, world!"); return true;
-                // clang-format on
-        }
-    }
-
-    return true;
-};
-
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
