@@ -141,9 +141,6 @@ void keyboard_post_init_user(void) {
 
 bool shutdown_user(bool jump_to_bootloader) {
     clear_rgb_layers();
-    rgblight_enable();
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-    rgblight_sethsv_noeeprom(HSV_RED);
     return true;
 }
 

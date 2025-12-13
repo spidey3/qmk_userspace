@@ -34,7 +34,6 @@ typedef enum layer_ack {
 #    define RGB_LAYER_ACK_DURATION 500
 
 void          keyboard_post_init_user_rgb(void);
-bool          process_record_user_rgb(uint16_t keycode, keyrecord_t *record);
 void          post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record);
 layer_state_t layer_state_set_user_rgb(layer_state_t state);
 layer_state_t default_layer_state_set_user_rgb(layer_state_t state);
@@ -48,10 +47,6 @@ void          shutdown_user_rgb(void);
 void unicode_input_mode_set_user_rgb(uint8_t input_mode);
 #    endif
 
-#endif
-
-#ifdef UNICODEMAP_ENABLE
-void eeconfig_init_user_unicode(void);
 #endif
 
 #ifdef SPI_DEBUG_SCAN_RATE

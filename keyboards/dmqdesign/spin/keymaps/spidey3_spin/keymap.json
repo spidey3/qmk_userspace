@@ -2,6 +2,7 @@
     "modules": [
         "spidey3/better_debug",
         "spidey3/chromeos",
-        "spidey3/misc_keys"
+        "spidey3/misc_keys",
+        "spidey3/startup_rgb_animation"
     ]
 }

@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_BOOT,    GR_NORM,    GR_WIDE,    GR_SCRI,    GR_BLOC,    GR_CIRC,    GR_SQUA,    GR_PARE,    GR_FRAK,    GR_BOLD,    GR_MATH,    XXXXXXX,    CH_GFLK,    KC_SLEP,    CH_SUSP,    KC_PWR,
         EE_CLR,     UM(SAD),    UM(MEH),    UM(HAPPY),  UM(ANGRY),  UM(THUMBD), UM(THUMBU), UM(SPIDER), X_BUL,      UM(LOL),    UM(SURPR),  X_DASH,     XXXXXXX,                KC_PAUS,    KC_SCRL,
         XXXXXXX,    UG_TOGG,    UG_NEXT,    UG_HUED,    UG_HUEU,    UG_SATD,    UG_SATU,    UG_VALD,    UG_VALU,    XXXXXXX,    VK_TOGG,    XXXXXXX,    XXXXXXX,                XXXXXXX,    KC_BRIU,
-        XXXXXXX,    RGB_M_P,    RGB_M_B,    RGB_M_R,    RGB_M_SW,   RGB_M_SN,   RGB_M_K,    RGB_M_G,    RGB_M_TW,   UC_LINX,    XXXXXXX,    XXXXXXX,                            XXXXXXX,    KC_BRID,
+        XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    UC_LINX,    XXXXXXX,    XXXXXXX,                            XXXXXXX,    KC_BRID,
         _______,    XXXXXXX,    UC_EMAC,    UC_WINC,    UC_NEXT,    NK_TOGG,    TG(_NUMPAD),UC_MAC,     UM(LARR),   UM(RARR),   DB_TOGG,    _______,                            KC_VOLU,    KC_MUTE,
         _______,    _______,    _______,                                    KC_MPLY,                                            KC_ASST,    _______,    KC_CPNL,    KC_MPRV,    KC_VOLD,    KC_MNXT
     )

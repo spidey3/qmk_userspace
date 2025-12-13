@@ -4,6 +4,8 @@
         "spidey3/glyph_replacement",
         "spidey3/chromeos",
         "spidey3/misc_keys",
-        "spidey3/shift_bs_delete"
+        "spidey3/shift_bs_delete",
+        "spidey3/better_rgb_keys",
+        "spidey3/startup_rgb_animation"
     ]
 }

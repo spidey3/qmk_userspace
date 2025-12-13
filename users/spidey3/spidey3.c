@@ -4,8 +4,6 @@
 #include QMK_KEYBOARD_H
 
 #include "spidey3.h"
-#include "version.h"
-#include <stdlib.h>
 
 static bool rand_seeded = false;
 
@@ -39,11 +37,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rand_seeded = true;
     }
 
-#ifdef RGBLIGHT_ENABLE
-    return process_record_user_rgb(keycode, record);
-#else
     return true;
-#endif
 }
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {

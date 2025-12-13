@@ -12,7 +12,6 @@
 #    define RGBLIGHT_MAX_LAYERS 18
 #    define RGBLIGHT_LAYER_BLINK
 #    define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
-#    define RGBLIGHT_STARTUP_ANIMATION
 
 #    undef RGBLIGHT_EFFECT_CHRISTMAS
 #    undef RGBLIGHT_EFFECT_ALTERNATING
@@ -35,9 +34,6 @@
 #define UNICODE_TYPE_DELAY 5
 
 #define SPI_DEBUG_SCAN_RATE
-
-#undef MANUFACTURER
-#define MANUFACTURER "Window of Fire"
 
 // Some keyboards enable BACKLIGHT_CAPS_LOCK without checking if backlight is enabled.
 // Undef as appropriate to avoid compiler warnings in that case.

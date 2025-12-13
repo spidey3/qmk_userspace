@@ -20,8 +20,3 @@ const uint32_t PROGMEM unicode_map[] = {
     [LOL]    = 0x1F602, // 😂
     [SURPR]  = 0x1F62E, // 😮
 };
-
-void eeconfig_init_user_unicode(void) {
-    // Default to Linux style
-    set_unicode_input_mode(UNICODE_MODE_LINUX);
-}

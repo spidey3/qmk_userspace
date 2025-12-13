@@ -97,3 +97,33 @@ bool process_record_misc_keys(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
+
+static uint8_t host_os_to_uc_mode(os_variant_t os) {
+    switch (os) {
+        case OS_LINUX:
+            dprintln("host os: linux");
+            return UNICODE_MODE_LINUX;
+        case OS_WINDOWS:
+            dprintln("host os: windows");
+            return UNICODE_MODE_WINCOMPOSE;
+        case OS_IOS:
+            dprintln("host os: ios");
+            return UNICODE_MODE_MACOS;
+        case OS_MACOS:
+            dprintln("host os: macos");
+            return UNICODE_MODE_MACOS;
+        default:
+            dprintln("host os: unrecognized");
+            return 0xFF;
+    }
+}
+
+bool process_detected_host_os_misc_keys(os_variant_t detected_os) {
+    os_variant_t os      = detected_host_os();
+    uint8_t      uc_mode = host_os_to_uc_mode(os);
+    if (uc_mode != 0xFF && uc_mode != get_unicode_input_mode()) set_unicode_input_mode(uc_mode);
+
+    dprintf("unicode input mode: %u\n", get_unicode_input_mode());                                                                                             
+
+    return true;
+}
