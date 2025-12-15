@@ -33,6 +33,8 @@ typedef enum layer_ack {
 
 #    define RGB_LAYER_ACK_DURATION 500
 
+bool          process_record_user_keymap(uint16_t keycode, keyrecord_t *record);
+
 void          keyboard_post_init_user_rgb(void);
 void          post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record);
 layer_state_t layer_state_set_user_rgb(layer_state_t state);

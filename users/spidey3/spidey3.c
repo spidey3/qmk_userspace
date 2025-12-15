@@ -31,13 +31,17 @@ void matrix_scan_user(void) {
 #    endif
 #endif
 
+__attribute__((weak)) bool process_record_user_keymap(uint16_t keycode, keyrecord_t *record) {
+    return true;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!rand_seeded) {
         srand(record->event.time % keycode);
         rand_seeded = true;
     }
 
-    return true;
+    return process_record_user_keymap(keycode, record);
 }
 
 void post_process_record_user(uint16_t keycode, keyrecord_t *record) {

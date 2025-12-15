@@ -13,43 +13,36 @@ extern uint16_t glyph_replace_mode;
 
 // Convenience macros
 #define NONE { RGBLIGHT_END_SEGMENTS }
-#define CORNER_BL(color) { 0, 1, color }
-#define CORNER_BR(color) { RGBLIGHT_LED_COUNT / 2 - 1, 1, color }
-#define CORNER_FR(color) { RGBLIGHT_LED_COUNT / 2, 1, color }
-#define CORNER_FL(color) { RGBLIGHT_LED_COUNT - 1, 1, color }
-#define CORNERS(color) {0, 1, color}, {RGBLIGHT_LED_COUNT / 2 - 1, 2, color}, { RGBLIGHT_LED_COUNT - 1, 1, color }
-#define FRONT(inset, color) { RGBLIGHT_LED_COUNT / 2 + inset, RGBLIGHT_LED_COUNT / 2 - 2 * inset, color }
-#define BACK(inset, color) { inset, RGBLIGHT_LED_COUNT / 2 - 2 * inset, color }
 
 const rgblight_segment_t PROGMEM _none[] = NONE;
 
 #define LAYER_OFFSET 0
 // No indicator for base layer
-const rgblight_segment_t PROGMEM _layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(CORNERS(HSV_MAGENTA));  // _NUMPAD
-const rgblight_segment_t PROGMEM _layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(CORNERS(HSV_GREEN));    // _FN
+const rgblight_segment_t PROGMEM _layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNERS(HSV_MAGENTA));  // _NUMPAD
+const rgblight_segment_t PROGMEM _layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNERS(HSV_GREEN));    // _FN
 
 #define LOCK_OFFSET 3
-const rgblight_segment_t PROGMEM _numlock_layer[]    = RGBLIGHT_LAYER_SEGMENTS(FRONT(3, HSV_YELLOW));
-const rgblight_segment_t PROGMEM _capslock_layer[]   = RGBLIGHT_LAYER_SEGMENTS(CORNER_FL(HSV_AZURE));
-const rgblight_segment_t PROGMEM _scrolllock_layer[] = RGBLIGHT_LAYER_SEGMENTS(CORNER_FR(HSV_ORANGE));
+const rgblight_segment_t PROGMEM _numlock_layer[]    = RGBLIGHT_LAYER_SEGMENTS(LRGB_FRONT(3, HSV_YELLOW));
+const rgblight_segment_t PROGMEM _capslock_layer[]   = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNER_FL(HSV_AZURE));
+const rgblight_segment_t PROGMEM _scrolllock_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNER_FR(HSV_ORANGE));
 
 #define MISC_OFFSET 6
-const rgblight_segment_t PROGMEM _gflock_layer[]       = RGBLIGHT_LAYER_SEGMENTS(BACK(1, HSV_ORANGE));
-const rgblight_segment_t PROGMEM _glyphreplace_layer[] = RGBLIGHT_LAYER_SEGMENTS(FRONT(1, HSV_ORANGE));
+const rgblight_segment_t PROGMEM _gflock_layer[]       = RGBLIGHT_LAYER_SEGMENTS(LRGB_BACK(1, HSV_ORANGE));
+const rgblight_segment_t PROGMEM _glyphreplace_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_FRONT(1, HSV_ORANGE));
 
 #define ACK_OFFSET 8
-const rgblight_segment_t PROGMEM _no_layer[]     = RGBLIGHT_LAYER_SEGMENTS(FRONT(1, HSV_RED));
-const rgblight_segment_t PROGMEM _yes_layer[]    = RGBLIGHT_LAYER_SEGMENTS(FRONT(1, HSV_GREEN));
-const rgblight_segment_t PROGMEM _meh_layer[]    = RGBLIGHT_LAYER_SEGMENTS(FRONT(1, HSV_YELLOW));
-const rgblight_segment_t PROGMEM _huh_layer[]    = RGBLIGHT_LAYER_SEGMENTS(CORNERS(HSV_YELLOW), FRONT(1, HSV_BLUE), BACK(1, HSV_BLUE));
+const rgblight_segment_t PROGMEM _no_layer[]     = RGBLIGHT_LAYER_SEGMENTS(LRGB_ACK(HSV_RED));
+const rgblight_segment_t PROGMEM _yes_layer[]    = RGBLIGHT_LAYER_SEGMENTS(LRGB_ACK(HSV_GREEN));
+const rgblight_segment_t PROGMEM _meh_layer[]    = RGBLIGHT_LAYER_SEGMENTS(LRGB_ACK(HSV_YELLOW));
+const rgblight_segment_t PROGMEM _huh_layer[]    = RGBLIGHT_LAYER_SEGMENTS(LRGB_ACK(HSV_ORANGE));
 
 #define UNICODE_OFFSET 12
-const rgblight_segment_t PROGMEM _uc_mac_layer[]  = RGBLIGHT_LAYER_SEGMENTS(CORNER_BR(HSV_PURPLE));
+const rgblight_segment_t PROGMEM _uc_mac_layer[]  = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNER_BR(HSV_PURPLE));
 // No indicator for UNICODE_MODE_LINUX
 // UNICODE_MODE_WINDOWS disabled in config.h
 // UNICODE_MODE_BSD not implemented
-const rgblight_segment_t PROGMEM _uc_winc_layer[] = RGBLIGHT_LAYER_SEGMENTS(CORNER_BR(HSV_CYAN));
-const rgblight_segment_t PROGMEM _uc_emacs_layer[] = RGBLIGHT_LAYER_SEGMENTS(CORNER_BR(HSV_GREEN));
+const rgblight_segment_t PROGMEM _uc_winc_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNER_BR(HSV_CYAN));
+const rgblight_segment_t PROGMEM _uc_emacs_layer[] = RGBLIGHT_LAYER_SEGMENTS(LRGB_CORNER_BR(HSV_GREEN));
 
 // Now define the array of layers. Higher numbered layers take precedence.
 const rgblight_segment_t *const PROGMEM _rgb_layers[] = {
@@ -181,11 +174,11 @@ void post_process_record_user_rgb(uint16_t keycode, keyrecord_t *record) {
             rgblight_set_layer_state(MISC_OFFSET + 1, glyph_replace_mode != GLYPH_REPLACE_MODE_NORMAL);
             break;
 
+#if 0 // disabled, because it breaks toggling the logo on my Wuque ikk68 Aurora
         case UG_TOGG:
-            // Hack - we only get called on the press for UG_TOGG,
-            // but the flag is only flipped on the release...
-            rgb_layer_ack_yn(!rgblight_config.enable);
+            rgb_layer_ack_yn(rgblight_config.enable);
             break;
+#endif
 
 #ifdef VELOCIKEY_ENABLE
         case QK_VELOCIKEY_TOGGLE:
