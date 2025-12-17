@@ -9,7 +9,10 @@
 ASSERT_COMMUNITY_MODULES_MIN_API_VERSION(1, 0, 0);
 
 static void __attribute__((noinline)) report_version(void) {
-    uprintln(QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION " - " QMK_BUILDDATE);
+    uprintln(QMK_KEYBOARD "/" QMK_KEYMAP "\n"
+             "QMK " QMK_VERSION "\n"
+             "Userspace " QMK_USERSPACE_VERSION "\n"
+             QMK_BUILDDATE);
 }
 
 void keyboard_post_init_better_debug(void) {
