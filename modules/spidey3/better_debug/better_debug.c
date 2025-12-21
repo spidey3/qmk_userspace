@@ -29,7 +29,7 @@ void keyboard_post_init_better_debug(void) {
 }
 
 bool process_record_better_debug(uint16_t keycode, keyrecord_t *record) {
-    dprintf("DEBUG: key event: kc: %02X, col: %02u, row: %02u, pressed: %u mods: %08b "
+    dprintf("key event: kc: %02X, col: %02u, row: %02u, pressed: %u mods: %08b "
 #if !defined(NO_ACTION_ONESHOT)
             "os: %08b "
 #endif
@@ -71,4 +71,12 @@ bool process_record_better_debug(uint16_t keycode, keyrecord_t *record) {
     }
 
     return true;
+}
+
+extern layer_state_t layer_state;
+extern layer_state_t default_layer_state;
+
+void post_process_record_better_debug(uint16_t keycode, keyrecord_t *record) {
+    post_process_record_better_debug_kb(keycode, record);
+    dprintf("layers: %0" STR(MAX_LAYER) "b & default: %0" STR(MAX_LAYER) "b\n", layer_state, default_layer_state);
 }
