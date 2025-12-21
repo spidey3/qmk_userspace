@@ -19,10 +19,10 @@
 //   
 // LEDs 16-19 illuminate the top logo
 
-#define LRGB_CORNER_BR(color) { 1, 1, color }
-#define LRGB_CORNER_BL(color) { 7, 1, color }
 #define LRGB_CORNER_FL(color) { 8, 2, color }
 #define LRGB_CORNER_FR(color) { 0, 1, color }, { 15, 1, color }
+#define LRGB_CORNER_BR(color) { 1, 1, color }
+#define LRGB_CORNER_BL(color) { 7, 1, color }
 #define LRGB_CORNERS(color) { 0, 2, color }, { 7, 3, color }, { 15, 1, color }
 #define LRGB_FRONT(inset, color) { 9+inset, 15-inset, color }
 #define LRGB_BACK(inset, color) { 1+inset, 7-inset, color }

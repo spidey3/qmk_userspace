@@ -24,39 +24,6 @@ enum layer_base {
     LAYER_BASE_END = _FN + 1,
 };
 
-// clang-format off
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_MACRO] = LAYOUT(
-        A(S(KC_N)),    KC_PSCR,       CH_SUSP,       TO(_MACRO),
-        KC_MPRV,       KC_MPLY,       KC_MNXT,       TO(_NUMPAD),
-        C(A(KC_COMM)), KC_F5,         C(A(KC_DOT)),  TO(_UG),
-        MO(_FN),       KC_ASST,       KC_CPNL),
-
-    [_NUMPAD] = LAYOUT(
-        KC_KP_7,   KC_KP_8,   KC_KP_9,   KC_TRNS,
-        KC_KP_4,   KC_KP_5,   KC_KP_6,   TO(_CURSOR),
-        KC_KP_1,   KC_KP_2,   KC_KP_3,   KC_TRNS,
-        KC_KP_0,   KC_PDOT,   KC_PENT),
-
-    [_CURSOR] = LAYOUT(
-        KC_HOME,   KC_UP,     KC_PGUP,   KC_TRNS,
-        KC_LEFT,   KC_NO,     KC_RIGHT,  TO(_NUMPAD),
-        KC_END,    KC_DOWN,   KC_PGDN,   KC_TRNS,
-        KC_INS,    KC_DEL,    KC_PENT),
-
-    [_UG] = LAYOUT(
-        UG_HUEU,   UG_SATU,   UG_VALU,   KC_TRNS,
-        UG_HUED,   UG_SATD,   UG_VALD,   TO(_NUMPAD),
-        UG_SPDD,   UG_SPDU,   KC_NO,     KC_TRNS,
-        UG_PREV,   UG_TOGG,   UG_NEXT),
-
-    [_FN] = LAYOUT(
-        KC_NO,     DB_TOGG,   QK_BOOT,   KC_TRNS,
-        KC_NO,     KC_NO,     EE_CLR,    KC_TRNS,
-        KC_NO,     KC_NO,     KC_NO,     KC_TRNS,
-        KC_TRNS,   KC_NO,     KC_NO),
-};
-
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_MACRO]  = { ENCODER_CCW_CW(KC_BRID,       KC_BRIU),      ENCODER_CCW_CW(C(KC_MINS), C(KC_EQL)), ENCODER_CCW_CW(KC_VOLD,    KC_VOLU) },
     [_NUMPAD] = { ENCODER_CCW_CW(KC_BRID,       KC_BRIU),      ENCODER_CCW_CW(C(KC_MINS), C(KC_EQL)), ENCODER_CCW_CW(KC_VOLD,    KC_VOLU) },

@@ -8,5 +8,3 @@
 
 #define LAYER_STATE_8BIT
 #define MAX_LAYER 4
-
-#define SHIFT_BACKSPACE_DELETE

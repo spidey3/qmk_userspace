@@ -1,12 +1,5 @@
-# Build Options
-#   comment out to disable the options.
-#
-MOUSEKEY_ENABLE = no	# Mouse keys
-UNICODEMAP_ENABLE = yes
-VELOCIKEY_ENABLE = yes
-GRAVE_ESC_ENABLE = yes
 RGBLIGHT_ENABLE = no
 BACKLIGHT_ENABLE = no
-
-# The following disabled to save space
+MOUSEKEY_ENABLE = no
+VELOCIKEY_ENABLE = yes
 SPACE_CADET_ENABLE = no
