@@ -4,7 +4,8 @@
     "license": "GPL-2.0-or-later",
     "features": {
         "console": true,
-        "os_detection": true
+        "os_detection": true,
+        "unicodemap": true
     },
     "keycodes": [
         { "key": "MISC_KEYS_00", "aliases": ["MK_00"] }
