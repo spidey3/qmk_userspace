@@ -106,24 +106,25 @@ bool process_record_glyph_replacement(uint16_t keycode, keyrecord_t *record) {
         case KC_A ... KC_0:
         case KC_SPACE:
             switch (glyph_replace_mode) {
+                //                                        baseAlphaLower baseAlphaUpper zeroGlyph baseNumberOne spaceGlyph
                 case GLYPH_REPLACE_MODE_WIDE:
-                    return replace_glyph(keycode, record, 0xFF41, 0xFF21, 0xFF10, 0xFF11, 0x2003, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0xFF41,        0xFF21,        0xFF10,   0xFF11,       0x2003, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_SCRIPT:
-                    return replace_glyph(keycode, record, 0x1D4EA, 0x1D4D0, 0x1D7CE, 0x1D7CF, 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1D4EA,       0x1D4D0,       0x1D7CE,  0x1D7CF,      0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_BLOCKS:
-                    return replace_glyph(keycode, record, 0x1F170, 0x1F170, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1F170,       0x1F170,       '0',      '1',          0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_CIRCLE:
-                    return replace_glyph(keycode, record, 0x1F150, 0x1F150, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1F150,       0x1F150,       0x24FF,   0x2776,       0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_SQUARE:
-                    return replace_glyph(keycode, record, 0x1F130, 0x1F130, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1F130,       0x1F130,       0x24EA,   0x2460,       0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_PARENS:
-                    return replace_glyph(keycode, record, 0x1F110, 0x1F110, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1F110,       0x1F110,       '0',      0x2474,       0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_FRAKTR:
-                    return replace_glyph(keycode, record, 0x1D586, 0x1D56C, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1D586,       0x1D56C,       '0',      '1',          0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_BOLD:
-                    return replace_glyph(keycode, record, 0x1D41A, 0x1D400, '0', '1', 0x2002, NULL, mods, osm);
+                    return replace_glyph(keycode, record, 0x1D41A,       0x1D400,       '0',      '1',          0x2002, NULL, mods, osm);
                 case GLYPH_REPLACE_MODE_MATH:
-                    return replace_glyph(keycode, record, 0x1D552, 0x1D538, '0', '1', 0x2002, &math_glyph_exceptions, mods, osm);
+                    return replace_glyph(keycode, record, 0x1D552,       0x1D538,       '0',      '1',          0x2002, &math_glyph_exceptions, mods, osm);
             }
     }
 
